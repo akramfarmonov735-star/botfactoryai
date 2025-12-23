@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="uz">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Biznes Mini App</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div id="app">
+        <!-- Header -->
+        <header class="header">
+            <div class="business-info">
+                <img id="businessLogo" class="business-logo" src="" alt="Logo">
+                <div class="business-details">
+                    <h1 id="businessName">Biznes nomi</h1>
+                    <p id="businessDescription">Tavsif</p>
+                </div>
+            </div>
+        </header>
+
+        <!-- Navigation Tabs -->
+        <nav class="tabs">
+            <button class="tab active" data-tab="catalog">
+                <span class="tab-icon">📦</span>
+                <span>Katalog</span>
+            </button>
+            <button class="tab" data-tab="cart">
+                <span class="tab-icon">🛒</span>
+                <span>Savat</span>
+                <span id="cartBadge" class="badge hidden">0</span>
+            </button>
+            <button class="tab" data-tab="contact">
+                <span class="tab-icon">📞</span>
+                <span>Aloqa</span>
+            </button>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="content">
+            <!-- Catalog Section -->
+            <section id="catalogSection" class="section active">
+                <div class="search-box">
+                    <input type="text" id="searchInput" placeholder="🔍 Qidirish...">
+                </div>
+                <div id="catalogGrid" class="catalog-grid">
+                    <!-- Items will be loaded here -->
+                </div>
+            </section>
+
+            <!-- Cart Section -->
+            <section id="cartSection" class="section hidden">
+                <div id="cartItems" class="cart-items">
+                    <!-- Cart items will be loaded here -->
+                </div>
+                <div id="cartEmpty" class="empty-state">
+                    <span class="empty-icon">🛒</span>
+                    <p>Savat bo'sh</p>
+                </div>
+                <div id="cartSummary" class="cart-summary hidden">
+                    <div class="summary-row">
+                        <span>Jami:</span>
+                        <strong id="cartTotal">0 so'm</strong>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Contact Section -->
+            <section id="contactSection" class="section hidden">
+                <div class="contact-card">
+                    <div class="contact-item">
+                        <span class="contact-icon">📍</span>
+                        <div>
+                            <strong>Manzil</strong>
+                            <p id="contactAddress">-</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <span class="contact-icon">📞</span>
+                        <div>
+                            <strong>Telefon</strong>
+                            <p id="contactPhone">-</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <span class="contact-icon">🕐</span>
+                        <div>
+                            <strong>Ish vaqti</strong>
+                            <p id="contactHours">-</p>
+                        </div>
+                    </div>
+                </div>
+                <a id="callButton" href="tel:" class="btn btn-primary btn-full">
+                    📞 Qo'ng'iroq qilish
+                </a>
+            </section>
+        </main>
+
+        <!-- Order Button (Fixed Bottom) -->
+        <div id="orderBar" class="order-bar hidden">
+            <div class="order-info">
+                <span id="orderCount">0 ta</span>
+                <span id="orderTotal">0 so'm</span>
+            </div>
+            <button id="orderButton" class="btn btn-accent">
+                Buyurtma berish
+            </button>
+        </div>
+
+        <!-- Order Modal -->
+        <div id="orderModal" class="modal hidden">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Buyurtma berish</h2>
+                    <button id="closeModal" class="close-btn">&times;</button>
+                </div>
+                <form id="orderForm">
+                    <div class="form-group">
+                        <label>Ismingiz</label>
+                        <input type="text" id="customerName" required placeholder="Ismingizni kiriting">
+                    </div>
+                    <div class="form-group">
+                        <label>Telefon raqam</label>
+                        <input type="tel" id="customerPhone" required placeholder="+998 90 123 45 67">
+                    </div>
+                    <div class="form-group">
+                        <label>Manzil (ixtiyoriy)</label>
+                        <textarea id="customerAddress" placeholder="Yetkazib berish manzili"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Izoh (ixtiyoriy)</label>
+                        <textarea id="orderNote" placeholder="Qo'shimcha izohlar"></textarea>
+                    </div>
+                    <div class="order-summary">
+                        <div id="modalOrderItems"></div>
+                        <div class="summary-total">
+                            <span>Jami:</span>
+                            <strong id="modalTotal">0 so'm</strong>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-accent btn-full">
+                        ✅ Buyurtmani tasdiqlash
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Item Detail Modal -->
+        <div id="itemModal" class="modal hidden">
+            <div class="modal-content">
+                <button id="closeItemModal" class="close-btn">&times;</button>
+                <img id="itemModalImage" class="item-modal-image" src="" alt="">
+                <h2 id="itemModalName"></h2>
+                <p id="itemModalDescription" class="item-description"></p>
+                <div class="item-price-row">
+                    <strong id="itemModalPrice">0 so'm</strong>
+                    <div class="quantity-control">
+                        <button type="button" id="qtyMinus" class="qty-btn">-</button>
+                        <span id="qtyValue">1</span>
+                        <button type="button" id="qtyPlus" class="qty-btn">+</button>
+                    </div>
+                </div>
+                <button id="addToCartBtn" class="btn btn-accent btn-full">
+                    🛒 Savatga qo'shish
+                </button>
+            </div>
+        </div>
+
+        <!-- Loading Overlay -->
+        <div id="loading" class="loading-overlay hidden">
+            <div class="spinner"></div>
+        </div>
+
+        <!-- Toast Notification -->
+        <div id="toast" class="toast hidden"></div>
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+
+</html>

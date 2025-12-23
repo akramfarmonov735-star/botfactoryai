@@ -102,8 +102,17 @@ class Bot(db.Model):
     is_active = db.Column(db.Boolean, default=True)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
     
+    # Mini App / Business settings
+    business_type = db.Column(db.String(20), default='product')  # product/service
+    business_description = db.Column(db.String(500))
+    business_logo = db.Column(db.String(500))
+    working_hours = db.Column(db.String(100))
+    miniapp_enabled = db.Column(db.Boolean, default=True)
+    description = db.Column(db.String(500))
+    
     # Relationships
     knowledge_base = db.relationship('KnowledgeBase', backref='bot', lazy=True, cascade='all, delete-orphan')
+    orders = db.relationship('MiniAppOrder', backref='bot', lazy=True, cascade='all, delete-orphan')
     
     def __repr__(self):
         return f'<Bot {self.name}>'
@@ -221,3 +230,22 @@ class BotMessage(db.Model):
     
     def __repr__(self):
         return f'<BotMessage {self.id} - {self.message_type}>'
+
+
+class MiniAppOrder(db.Model):
+    """Orders from Telegram Mini App"""
+    id = db.Column(db.Integer, primary_key=True)
+    bot_id = db.Column(db.Integer, db.ForeignKey('bot.id'), nullable=False)
+    customer_name = db.Column(db.String(200), nullable=False)
+    customer_phone = db.Column(db.String(50), nullable=False)
+    customer_address = db.Column(db.String(500))
+    note = db.Column(Text)
+    items = db.Column(Text, nullable=False)  # JSON array of items
+    total_amount = db.Column(db.Float, default=0)
+    telegram_user_id = db.Column(db.String(50))
+    status = db.Column(db.String(20), default='pending')  # pending/confirmed/delivered/cancelled
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+    updated_at = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
+    
+    def __repr__(self):
+        return f'<MiniAppOrder {self.id} - {self.customer_name}>'

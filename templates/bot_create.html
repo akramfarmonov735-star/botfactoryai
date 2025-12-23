@@ -16,92 +16,52 @@
                     <i class="fas fa-info-circle me-2"></i>
                     <strong>Telegram bot yaratish uchun:</strong>
                     <ol class="mb-0 mt-2">
-                        <li>Telegramda <a href="https://t.me/BotFather" target="_blank" class="text-decoration-none">@BotFather</a> ga yozing</li>
+                        <li>Telegramda <a href="https://t.me/BotFather" target="_blank"
+                                class="text-decoration-none">@BotFather</a> ga yozing</li>
                         <li><code>/newbot</code> buyrug'ini yuboring</li>
                         <li>Bot nomini kiriting (masalan: "Mening Bot")</li>
                         <li>Bot username kiriting (masalan: "meningbot_bot")</li>
                         <li>BotFather sizga token beradi - uni quyida kiriting</li>
                     </ol>
                 </div>
-                
+
                 <form method="POST">
                     <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
                     <div class="mb-3">
                         <label for="name" class="form-label">
                             <i class="fas fa-robot me-1"></i>Bot nomi *
                         </label>
-                        <input type="text" class="form-control" id="name" name="name" 
-                               required placeholder="Masalan: Mijozlar xizmati boti" autofocus>
+                        <input type="text" class="form-control" id="name" name="name" required
+                            placeholder="Masalan: Mijozlar xizmati boti" autofocus>
                         <div class="form-text">Bu nom faqat sizning panelingizda ko'rinadi</div>
                     </div>
-                    
+
                     <div class="mb-3">
                         <label for="platform" class="form-label">
-                            <i class="fas fa-mobile-alt me-1"></i>Platforma *
+                            <i class="fab fa-telegram me-1"></i>Platforma
                         </label>
-                        <select class="form-select" id="platform" name="platform" required>
-                            <option value="Telegram">
-                                <i class="fab fa-telegram"></i> Telegram
-                            </option>
-                            {% if current_user.subscription_type in ['basic', 'premium', 'admin'] %}
-                            <option value="Instagram">
-                                <i class="fab fa-instagram"></i> Instagram
-                            </option>
-                            <option value="WhatsApp">
-                                <i class="fab fa-whatsapp"></i> WhatsApp
-                            </option>
-                            {% endif %}
-                        </select>
-                        {% if current_user.subscription_type == 'free' %}
-                        <div class="form-text text-warning">
-                            <i class="fas fa-lock me-1"></i>
-                            Instagram va WhatsApp Basic/Premium obunada mavjud
+                        <input type="hidden" name="platform" value="Telegram">
+                        <div class="form-control bg-light">
+                            <i class="fab fa-telegram text-primary me-2"></i>Telegram
                         </div>
-                        {% endif %}
+                        <div class="form-text text-success">
+                            <i class="fas fa-check me-1"></i>Faqat Telegram botlar qo'llab-quvvatlanadi
+                        </div>
                     </div>
-                    
+
                     <div class="mb-3" id="telegram-settings">
                         <label for="telegram_token" class="form-label">
                             <i class="fab fa-telegram me-1"></i>Telegram Bot Token *
                         </label>
-                        <input type="text" class="form-control font-monospace" id="telegram_token" name="telegram_token" 
-                               placeholder="1234567890:ABCdefGHIjklMNOpqrSTUvwxyz" required>
+                        <input type="text" class="form-control font-monospace" id="telegram_token" name="telegram_token"
+                            placeholder="1234567890:ABCdefGHIjklMNOpqrSTUvwxyz" required>
                         <div class="form-text">
                             BotFather dan olgan tokenni kiriting. Format: 123456:ABC-DEF1234ghIkl-zyx57W2v1u123ew11
                         </div>
                     </div>
-                    
-                    <div class="mb-3" id="instagram-settings" style="display: none;">
-                        <label for="instagram_token" class="form-label">
-                            <i class="fab fa-instagram me-1"></i>Instagram Access Token *
-                        </label>
-                        <input type="text" class="form-control font-monospace" id="instagram_token" name="instagram_token" 
-                               placeholder="Instagram Business API token">
-                        <div class="form-text">
-                            Instagram Business API dan olgan access tokenni kiriting
-                        </div>
-                    </div>
-                    
-                    <div class="mb-3" id="whatsapp-settings" style="display: none;">
-                        <label for="whatsapp_token" class="form-label">
-                            <i class="fab fa-whatsapp me-1"></i>WhatsApp Access Token *
-                        </label>
-                        <input type="text" class="form-control font-monospace" id="whatsapp_token" name="whatsapp_token" 
-                               placeholder="WhatsApp Business API token">
-                        <div class="form-text">
-                            WhatsApp Business API dan olgan access tokenni kiriting
-                        </div>
-                        
-                        <label for="whatsapp_phone_id" class="form-label mt-3">
-                            <i class="fas fa-phone me-1"></i>WhatsApp Phone Number ID *
-                        </label>
-                        <input type="text" class="form-control" id="whatsapp_phone_id" name="whatsapp_phone_id" 
-                               placeholder="123456789012345">
-                        <div class="form-text">
-                            WhatsApp Business API dan olgan telefon raqami ID-si
-                        </div>
-                    </div>
-                    
+
+
+
                     <!-- Suhbat kuzatuvi sozlamalari -->
                     <div class="card mb-4 border-info">
                         <div class="card-header bg-info text-white">
@@ -112,41 +72,44 @@
                         <div class="card-body bg-dark text-white">
                             <div class="alert alert-info small">
                                 <i class="fas fa-info-circle me-2"></i>
-                                <strong>Suhbat kuzatuvi:</strong> Mijozlaringiz va botingiz o'rtasidagi barcha suhbatlar sizning shaxsiy Telegram chatiga yoki kanalingizga real vaqtda yuboriladi.
+                                <strong>Suhbat kuzatuvi:</strong> Mijozlaringiz va botingiz o'rtasidagi barcha suhbatlar
+                                sizning shaxsiy Telegram chatiga yoki kanalingizga real vaqtda yuboriladi.
                             </div>
-                            
+
                             <div class="mb-3">
                                 <label for="admin_chat_id" class="form-label text-white">
                                     <i class="fas fa-user-shield me-1"></i>Admin Chat ID
                                 </label>
-                                <input type="text" class="form-control" id="admin_chat_id" name="admin_chat_id" 
-                                       placeholder="123456789" pattern="[0-9-]+">
+                                <input type="text" class="form-control" id="admin_chat_id" name="admin_chat_id"
+                                    placeholder="123456789" pattern="[0-9-]+">
                                 <div class="form-text text-light">
                                     Sizning shaxsiy Telegram chat ID-ngiz. Suhbatlar bu chatga yuboriladi.
-                                    <br><strong class="text-white">Chat ID olish:</strong> @userinfobot ga yozing va /start bosing
+                                    <br><strong class="text-white">Chat ID olish:</strong> @userinfobot ga yozing va
+                                    /start bosing
                                 </div>
                             </div>
-                            
+
                             <div class="mb-3">
                                 <label for="notification_channel" class="form-label text-white">
                                     <i class="fas fa-bullhorn me-1"></i>Bildirishnoma kanali (ixtiyoriy)
                                 </label>
-                                <input type="text" class="form-control" id="notification_channel" name="notification_channel" 
-                                       placeholder="@kanal_nomi yoki -100123456789">
+                                <input type="text" class="form-control" id="notification_channel"
+                                    name="notification_channel" placeholder="@kanal_nomi yoki -100123456789">
                                 <div class="form-text text-light">
                                     Telegram kanal nomi (@kanal_nomi) yoki kanal ID-si. Bot adminstrarorligini bering!
                                 </div>
                             </div>
-                            
+
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="notifications_enabled" name="notifications_enabled" value="1">
+                                <input class="form-check-input" type="checkbox" id="notifications_enabled"
+                                    name="notifications_enabled" value="1">
                                 <label class="form-check-label text-white" for="notifications_enabled">
                                     <i class="fas fa-bell me-1"></i>Suhbat bildirishnomalarini yoqish
                                 </label>
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="row">
                         <div class="col-md-6">
                             <button type="submit" class="btn btn-primary btn-lg w-100">
@@ -160,7 +123,7 @@
                         </div>
                     </div>
                 </form>
-                
+
                 <!-- Help Section -->
                 <hr class="my-4">
                 <div class="row">
@@ -193,57 +156,57 @@
 
 {% block scripts %}
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-    const platformSelect = document.getElementById('platform');
-    const telegramSettings = document.getElementById('telegram-settings');
-    const tokenInput = document.getElementById('telegram_token');
-    
-    const instagramSettings = document.getElementById('instagram-settings');
-    const whatsappSettings = document.getElementById('whatsapp-settings');
-    const instagramTokenInput = document.getElementById('instagram_token');
-    const whatsappTokenInput = document.getElementById('whatsapp_token');
-    const whatsappPhoneInput = document.getElementById('whatsapp_phone_id');
-    
-    function togglePlatformSettings() {
-        // Hide all settings
-        telegramSettings.style.display = 'none';
-        instagramSettings.style.display = 'none';
-        whatsappSettings.style.display = 'none';
-        
-        // Remove required from all inputs
-        tokenInput.required = false;
-        instagramTokenInput.required = false;
-        whatsappTokenInput.required = false;
-        whatsappPhoneInput.required = false;
-        
-        // Show relevant settings
-        if (platformSelect.value === 'Telegram') {
-            telegramSettings.style.display = 'block';
-            tokenInput.required = true;
-        } else if (platformSelect.value === 'Instagram') {
-            instagramSettings.style.display = 'block';
-            instagramTokenInput.required = true;
-        } else if (platformSelect.value === 'WhatsApp') {
-            whatsappSettings.style.display = 'block';
-            whatsappTokenInput.required = true;
-            whatsappPhoneInput.required = true;
+    document.addEventListener('DOMContentLoaded', function () {
+        const platformSelect = document.getElementById('platform');
+        const telegramSettings = document.getElementById('telegram-settings');
+        const tokenInput = document.getElementById('telegram_token');
+
+        const instagramSettings = document.getElementById('instagram-settings');
+        const whatsappSettings = document.getElementById('whatsapp-settings');
+        const instagramTokenInput = document.getElementById('instagram_token');
+        const whatsappTokenInput = document.getElementById('whatsapp_token');
+        const whatsappPhoneInput = document.getElementById('whatsapp_phone_id');
+
+        function togglePlatformSettings() {
+            // Hide all settings
+            telegramSettings.style.display = 'none';
+            instagramSettings.style.display = 'none';
+            whatsappSettings.style.display = 'none';
+
+            // Remove required from all inputs
+            tokenInput.required = false;
+            instagramTokenInput.required = false;
+            whatsappTokenInput.required = false;
+            whatsappPhoneInput.required = false;
+
+            // Show relevant settings
+            if (platformSelect.value === 'Telegram') {
+                telegramSettings.style.display = 'block';
+                tokenInput.required = true;
+            } else if (platformSelect.value === 'Instagram') {
+                instagramSettings.style.display = 'block';
+                instagramTokenInput.required = true;
+            } else if (platformSelect.value === 'WhatsApp') {
+                whatsappSettings.style.display = 'block';
+                whatsappTokenInput.required = true;
+                whatsappPhoneInput.required = true;
+            }
         }
-    }
-    
-    platformSelect.addEventListener('change', togglePlatformSettings);
-    togglePlatformSettings(); // Initial call
-    
-    // Token validation
-    tokenInput.addEventListener('input', function() {
-        const token = this.value;
-        const tokenPattern = /^\d+:[A-Za-z0-9_-]+$/;
-        
-        if (token && !tokenPattern.test(token)) {
-            this.setCustomValidity('Token formati noto\'g\'ri. Format: 123456:ABC-DEF1234ghIkl');
-        } else {
-            this.setCustomValidity('');
-        }
+
+        platformSelect.addEventListener('change', togglePlatformSettings);
+        togglePlatformSettings(); // Initial call
+
+        // Token validation
+        tokenInput.addEventListener('input', function () {
+            const token = this.value;
+            const tokenPattern = /^\d+:[A-Za-z0-9_-]+$/;
+
+            if (token && !tokenPattern.test(token)) {
+                this.setCustomValidity('Token formati noto\'g\'ri. Format: 123456:ABC-DEF1234ghIkl');
+            } else {
+                this.setCustomValidity('');
+            }
+        });
     });
-});
 </script>
 {% endblock %}

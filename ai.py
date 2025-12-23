@@ -68,22 +68,46 @@ def get_ai_response(message: str, bot_name: str = "Chatbot Factory AI", user_lan
         # Use faster model configuration for quicker responses
         generation_config = genai.types.GenerationConfig(
             temperature=0.7,  # Slightly lower for faster generation
-            max_output_tokens=500,  # Limit output for speed
+            max_output_tokens=2000,  # Increased to prevent response truncation
             top_p=0.9,
             top_k=40
         )
         
-        model = genai.GenerativeModel(
-            'gemini-1.5-flash',
-            generation_config=generation_config
-        )
-        response = model.generate_content(full_prompt)
+        # Multi-API key and model fallback support
+        api_keys = [
+            os.environ.get("GOOGLE_API_KEY"),
+            os.environ.get("GOOGLE_API_KEY2"),
+        ]
+        models = [
+            'models/gemini-flash-latest',
+            'models/gemini-flash-lite-latest',
+        ]
         
-        if response.text:
-            # Return response as-is, let Telegram handler deal with encoding
-            return response.text
-        else:
-            return get_fallback_response(user_language)
+        last_error = None
+        for api_key in api_keys:
+            if not api_key:
+                continue
+            for model_name in models:
+                try:
+                    genai.configure(api_key=api_key)
+                    model = genai.GenerativeModel(
+                        model_name,
+                        generation_config=generation_config
+                    )
+                    response = model.generate_content(full_prompt)
+                    
+                    if response.text:
+                        logging.info(f"AI response success with model: {model_name}")
+                        return response.text
+                except Exception as model_error:
+                    last_error = model_error
+                    logging.warning(f"Model {model_name} failed: {str(model_error)[:100]}")
+                    continue
+        
+        # If all attempts failed, raise the last error
+        if last_error:
+            raise last_error
+        return get_fallback_response(user_language)
             
     except Exception as e:
         # Safe error logging to prevent encoding issues  

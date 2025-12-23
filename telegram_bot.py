@@ -441,6 +441,15 @@ class TelegramBot:
         if not update or not update.effective_user or not update.message:
             return
         
+        # Deduplication: Skip if this update was already processed
+        try:
+            update_id = update.data.get('update_id') if hasattr(update, 'data') else None
+            if update_id and not _mark_processed(update_id * 1000 + 1):  # Use different ID space for start_command
+                logger.info(f"Skipping duplicate start_command for update_id: {update_id}")
+                return
+        except Exception:
+            pass
+        
         user = update.effective_user
         
         get_ai_response, process_knowledge_base, User, Bot, ChatHistory, db, app = get_dependencies()
@@ -511,6 +520,30 @@ class TelegramBot:
             
             if update.message:
                 await update.message.reply_text(welcome_message)
+
+            # Send Mini App button if enabled
+            try:
+                if bot.miniapp_enabled:
+                    import os
+                    base_url = os.environ.get('BASE_URL', 'http://127.0.0.1:5000')
+                    miniapp_url = f"{base_url}/static/miniapp/index.html?bot_id={self.bot_id}"
+                    
+                    miniapp_keyboard = InlineKeyboardMarkup([
+                        [InlineKeyboardButton(
+                            text="📱 Mahsulotlar / Xizmatlar",
+                            web_app={"url": miniapp_url}
+                        )],
+                        [InlineKeyboardButton(
+                            text="📞 Bog'lanish",
+                            callback_data="contact_info"
+                        )]
+                    ])
+                    await update.message.reply_text(
+                        "🛒 Katalogni ko'rish uchun quyidagi tugmani bosing:",
+                        reply_markup=miniapp_keyboard
+                    )
+            except Exception as miniapp_error:
+                logger.error(f"Failed to send Mini App button: {str(miniapp_error)[:100]}")
 
             # Send contact options inline keyboard
             try:

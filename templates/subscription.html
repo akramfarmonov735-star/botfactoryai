@@ -4,194 +4,194 @@
 
 {% block content %}
 <style>
-.pricing-section {
-    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
-    min-height: 100vh;
-    padding: 80px 0;
-    color: white;
-}
+    .pricing-section {
+        background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+        min-height: 100vh;
+        padding: 80px 0;
+        color: white;
+    }
 
-.pricing-card {
-    background: rgba(40, 40, 40, 0.9);
-    border-radius: 20px;
-    padding: 40px 30px;
-    margin: 20px 0;
-    border: 2px solid transparent;
-    transition: all 0.3s ease;
-    height: 100%;
-    position: relative;
-    backdrop-filter: blur(10px);
-}
+    .pricing-card {
+        background: rgba(40, 40, 40, 0.9);
+        border-radius: 20px;
+        padding: 40px 30px;
+        margin: 20px 0;
+        border: 2px solid transparent;
+        transition: all 0.3s ease;
+        height: 100%;
+        position: relative;
+        backdrop-filter: blur(10px);
+    }
 
-.pricing-card.test {
-    border-color: #6c757d;
-    background: linear-gradient(135deg, rgba(108, 117, 125, 0.2) 0%, rgba(108, 117, 125, 0.1) 100%);
-}
+    .pricing-card.test {
+        border-color: #6c757d;
+        background: linear-gradient(135deg, rgba(108, 117, 125, 0.2) 0%, rgba(108, 117, 125, 0.1) 100%);
+    }
 
-.pricing-card.basic {
-    border-color: #007bff;
-    background: linear-gradient(135deg, rgba(0, 123, 255, 0.2) 0%, rgba(0, 123, 255, 0.1) 100%);
-}
+    .pricing-card.basic {
+        border-color: #007bff;
+        background: linear-gradient(135deg, rgba(0, 123, 255, 0.2) 0%, rgba(0, 123, 255, 0.1) 100%);
+    }
 
-.pricing-card.premium {
-    border-color: #ffc107;
-    background: linear-gradient(135deg, rgba(255, 193, 7, 0.2) 0%, rgba(255, 193, 7, 0.1) 100%);
-    transform: scale(1.05);
-}
+    .pricing-card.premium {
+        border-color: #ffc107;
+        background: linear-gradient(135deg, rgba(255, 193, 7, 0.2) 0%, rgba(255, 193, 7, 0.1) 100%);
+        transform: scale(1.05);
+    }
 
-.pricing-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-}
+    .pricing-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    }
 
-.pricing-card.premium:hover {
-    transform: scale(1.05) translateY(-10px);
-}
+    .pricing-card.premium:hover {
+        transform: scale(1.05) translateY(-10px);
+    }
 
-.plan-header {
-    text-align: center;
-    margin-bottom: 30px;
-}
+    .plan-header {
+        text-align: center;
+        margin-bottom: 30px;
+    }
 
-.plan-icon {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto 20px;
-    font-size: 2rem;
-}
+    .plan-icon {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 20px;
+        font-size: 2rem;
+    }
 
-.plan-icon.test {
-    background: linear-gradient(135deg, #6c757d, #495057);
-}
+    .plan-icon.test {
+        background: linear-gradient(135deg, #6c757d, #495057);
+    }
 
-.plan-icon.basic {
-    background: linear-gradient(135deg, #007bff, #0056b3);
-}
+    .plan-icon.basic {
+        background: linear-gradient(135deg, #007bff, #0056b3);
+    }
 
-.plan-icon.premium {
-    background: linear-gradient(135deg, #ffc107, #e0a800);
-}
+    .plan-icon.premium {
+        background: linear-gradient(135deg, #ffc107, #e0a800);
+    }
 
-.plan-title {
-    font-size: 2rem;
-    font-weight: 700;
-    margin-bottom: 10px;
-}
+    .plan-title {
+        font-size: 2rem;
+        font-weight: 700;
+        margin-bottom: 10px;
+    }
 
-.plan-price {
-    font-size: 2.5rem;
-    font-weight: 800;
-    margin-bottom: 10px;
-}
+    .plan-price {
+        font-size: 2.5rem;
+        font-weight: 800;
+        margin-bottom: 10px;
+    }
 
-.plan-duration {
-    font-size: 1rem;
-    opacity: 0.8;
-    margin-bottom: 30px;
-}
+    .plan-duration {
+        font-size: 1rem;
+        opacity: 0.8;
+        margin-bottom: 30px;
+    }
 
-.feature-list {
-    list-style: none;
-    padding: 0;
-    margin: 30px 0;
-}
+    .feature-list {
+        list-style: none;
+        padding: 0;
+        margin: 30px 0;
+    }
 
-.feature-list li {
-    padding: 12px 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    display: flex;
-    align-items: center;
-}
+    .feature-list li {
+        padding: 12px 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        display: flex;
+        align-items: center;
+    }
 
-.feature-list li:last-child {
-    border-bottom: none;
-}
+    .feature-list li:last-child {
+        border-bottom: none;
+    }
 
-.feature-icon {
-    width: 24px;
-    height: 24px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-right: 15px;
-    font-size: 12px;
-}
+    .feature-icon {
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 15px;
+        font-size: 12px;
+    }
 
-.feature-icon.check {
-    background: linear-gradient(135deg, #28a745, #20c997);
-    color: white;
-}
+    .feature-icon.check {
+        background: linear-gradient(135deg, #28a745, #20c997);
+        color: white;
+    }
 
-.plan-button {
-    width: 100%;
-    padding: 15px;
-    border-radius: 12px;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    border: none;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    margin-top: 20px;
-}
+    .plan-button {
+        width: 100%;
+        padding: 15px;
+        border-radius: 12px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        border: none;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        margin-top: 20px;
+    }
 
-.plan-button.test {
-    background: linear-gradient(135deg, #6c757d, #495057);
-    color: white;
-}
+    .plan-button.test {
+        background: linear-gradient(135deg, #6c757d, #495057);
+        color: white;
+    }
 
-.plan-button.basic {
-    background: linear-gradient(135deg, #007bff, #0056b3);
-    color: white;
-}
+    .plan-button.basic {
+        background: linear-gradient(135deg, #007bff, #0056b3);
+        color: white;
+    }
 
-.plan-button.premium {
-    background: linear-gradient(135deg, #ffc107, #e0a800);
-    color: #000;
-}
+    .plan-button.premium {
+        background: linear-gradient(135deg, #ffc107, #e0a800);
+        color: #000;
+    }
 
-.plan-button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
-}
+    .plan-button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+    }
 
-.main-title {
-    text-align: center;
-    margin-bottom: 60px;
-}
+    .main-title {
+        text-align: center;
+        margin-bottom: 60px;
+    }
 
-.main-title h1 {
-    font-size: 3rem;
-    font-weight: 700;
-    margin-bottom: 20px;
-    background: linear-gradient(135deg, #ffc107, #007bff);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-}
+    .main-title h1 {
+        font-size: 3rem;
+        font-weight: 700;
+        margin-bottom: 20px;
+        background: linear-gradient(135deg, #ffc107, #007bff);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
 
-.crown-icon {
-    color: #ffc107;
-    font-size: 2.5rem;
-    margin-right: 15px;
-}
+    .crown-icon {
+        color: #ffc107;
+        font-size: 2.5rem;
+        margin-right: 15px;
+    }
 
-.current-plan-badge {
-    position: absolute;
-    top: -10px;
-    right: 20px;
-    background: linear-gradient(135deg, #28a745, #20c997);
-    color: white;
-    padding: 5px 15px;
-    border-radius: 20px;
-    font-size: 0.8rem;
-    font-weight: 600;
-}
+    .current-plan-badge {
+        position: absolute;
+        top: -10px;
+        right: 20px;
+        background: linear-gradient(135deg, #28a745, #20c997);
+        color: white;
+        padding: 5px 15px;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        font-weight: 600;
+    }
 </style>
 
 <div class="pricing-section">
@@ -200,7 +200,7 @@
             <h1><i class="fas fa-crown crown-icon"></i>Tariflar</h1>
             <p class="lead">O'zingizga mos tarifni tanlang va AI botlar olamiga qadaṃ qo'ying</p>
         </div>
-        
+
         <div class="row justify-content-center">
             <!-- Test Plan -->
             <div class="col-lg-3 col-md-6">
@@ -208,7 +208,7 @@
                     {% if current_user.subscription_type == 'free' %}
                     <div class="current-plan-badge">Joriy tarif</div>
                     {% endif %}
-                    
+
                     <div class="plan-header">
                         <div class="plan-icon test">
                             <i class="fas fa-gift"></i>
@@ -217,7 +217,7 @@
                         <div class="plan-price">Bepul</div>
                         <div class="plan-duration">/14 kun</div>
                     </div>
-                    
+
                     <ul class="feature-list">
                         <li>
                             <div class="feature-icon check">
@@ -244,7 +244,7 @@
                             Bilim bazasi
                         </li>
                     </ul>
-                    
+
                     {% if current_user.subscription_type == 'free' %}
                     <button class="plan-button test" disabled>Faol tarif</button>
                     {% else %}
@@ -252,14 +252,14 @@
                     {% endif %}
                 </div>
             </div>
-            
+
             <!-- Starter Plan -->
             <div class="col-lg-3 col-md-6">
                 <div class="pricing-card basic">
                     {% if current_user.subscription_type == 'starter' %}
                     <div class="current-plan-badge">Joriy tarif</div>
                     {% endif %}
-                    
+
                     <div class="plan-header">
                         <div class="plan-icon basic">
                             <i class="fas fa-rocket"></i>
@@ -268,7 +268,7 @@
                         <div class="plan-price">165,000 so'm</div>
                         <div class="plan-duration">/oy</div>
                     </div>
-                    
+
                     <ul class="feature-list">
                         <li>
                             <div class="feature-icon check">
@@ -307,14 +307,14 @@
                             Texnik yordam
                         </li>
                     </ul>
-                    
+
                     {% if current_user.subscription_type == 'starter' %}
                     <button class="plan-button basic" disabled>Faol tarif</button>
                     {% elif current_user.subscription_type in ['basic', 'premium', 'admin'] %}
                     <button class="plan-button basic" disabled>Yuqori tarif faol</button>
                     {% else %}
-                    <button class="plan-button basic" data-bs-toggle="modal" data-bs-target="#contactModal" 
-                            data-subscription="starter" data-amount="165000">Bog'lanish</button>
+                    <button class="plan-button basic" data-bs-toggle="modal" data-bs-target="#contactModal"
+                        data-subscription="starter" data-amount="165000">Bog'lanish</button>
                     {% endif %}
                 </div>
             </div>
@@ -325,7 +325,7 @@
                     {% if current_user.subscription_type == 'basic' %}
                     <div class="current-plan-badge">Joriy tarif</div>
                     {% endif %}
-                    
+
                     <div class="plan-header">
                         <div class="plan-icon basic">
                             <i class="fas fa-star"></i>
@@ -334,7 +334,7 @@
                         <div class="plan-price">290,000 so'm</div>
                         <div class="plan-duration">/oy</div>
                     </div>
-                    
+
                     <ul class="feature-list">
                         <li>
                             <div class="feature-icon check">
@@ -346,7 +346,7 @@
                             <div class="feature-icon check">
                                 <i class="fas fa-check"></i>
                             </div>
-                            Barcha platformalar
+                            Telegram Bot
                         </li>
                         <li>
                             <div class="feature-icon check">
@@ -367,25 +367,25 @@
                             Texnik yordam
                         </li>
                     </ul>
-                    
+
                     {% if current_user.subscription_type == 'basic' %}
                     <button class="plan-button basic" disabled>Faol tarif</button>
                     {% elif current_user.subscription_type in ['premium', 'admin'] %}
                     <button class="plan-button basic" disabled>Yuqori tarif faol</button>
                     {% else %}
-                    <button class="plan-button basic" data-bs-toggle="modal" data-bs-target="#contactModal" 
-                            data-subscription="basic" data-amount="290000">Bog'lanish</button>
+                    <button class="plan-button basic" data-bs-toggle="modal" data-bs-target="#contactModal"
+                        data-subscription="basic" data-amount="290000">Bog'lanish</button>
                     {% endif %}
                 </div>
             </div>
-            
+
             <!-- Premium Plan -->
             <div class="col-lg-3 col-md-6">
                 <div class="pricing-card premium">
                     {% if current_user.subscription_type == 'premium' %}
                     <div class="current-plan-badge">Joriy tarif</div>
                     {% endif %}
-                    
+
                     <div class="plan-header">
                         <div class="plan-icon premium">
                             <i class="fas fa-crown"></i>
@@ -394,7 +394,7 @@
                         <div class="plan-price">590,000 so'm</div>
                         <div class="plan-duration">/oy</div>
                     </div>
-                    
+
                     <ul class="feature-list">
                         <li>
                             <div class="feature-icon check">
@@ -406,7 +406,7 @@
                             <div class="feature-icon check">
                                 <i class="fas fa-check"></i>
                             </div>
-                            Barcha platformalar
+                            Telegram Bot
                         </li>
                         <li>
                             <div class="feature-icon check">
@@ -433,14 +433,14 @@
                             Kengaytirilgan analitika
                         </li>
                     </ul>
-                    
+
                     {% if current_user.subscription_type == 'premium' %}
                     <button class="plan-button premium" disabled>Faol tarif</button>
                     {% elif current_user.subscription_type == 'admin' %}
                     <button class="plan-button premium" disabled>Admin tarif faol</button>
                     {% else %}
-                    <button class="plan-button premium" data-bs-toggle="modal" data-bs-target="#contactModal" 
-                            data-subscription="premium" data-amount="590000">Bog'lanish</button>
+                    <button class="plan-button premium" data-bs-toggle="modal" data-bs-target="#contactModal"
+                        data-subscription="premium" data-amount="590000">Bog'lanish</button>
                     {% endif %}
                 </div>
             </div>
@@ -463,18 +463,60 @@
                     <h6 class="mb-3">Tanlangan tarif: <span id="selectedPlan"></span></h6>
                     <p class="mb-3">Narxi: <span id="selectedAmount"></span> so'm/oy</p>
                 </div>
-                
-                <!-- Paynet Payment Section -->
+
+                <!-- Payment Section -->
                 <div class="payment-section mb-4">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="card" style="background: #1a1a1a; border: 2px solid #00bcd4;">
-                                <div class="card-header bg-primary text-white">
-                                    <h5><i class="fas fa-credit-card me-2"></i>1-qadam: To'lov qiling</h5>
+                    <h5 class="mb-3"><i class="fas fa-wallet me-2"></i>To'lov usullaridan birini tanlang:</h5>
+
+                    <!-- Payment Options Tabs -->
+                    <ul class="nav nav-pills nav-fill mb-3" id="paymentTabs" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active" id="xazna-tab" data-bs-toggle="pill" data-bs-target="#xazna"
+                                type="button" role="tab">
+                                <i class="fas fa-qrcode me-1"></i>Xazna (tavsiya)
+                            </button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="paynet-tab" data-bs-toggle="pill" data-bs-target="#paynet"
+                                type="button" role="tab">
+                                <i class="fas fa-credit-card me-1"></i>Paynet
+                            </button>
+                        </li>
+                    </ul>
+
+                    <div class="tab-content" id="paymentTabsContent">
+                        <!-- Xazna Payment -->
+                        <div class="tab-pane fade show active" id="xazna" role="tabpanel">
+                            <div class="card" style="background: #1a1a1a; border: 2px solid #28a745;">
+                                <div class="card-header bg-success text-white text-center">
+                                    <h5><i class="fas fa-bolt me-2"></i>Xazna - Tez va qulay to'lov</h5>
                                 </div>
                                 <div class="card-body text-center">
-                                    <img src="/static/images/paynet_qr.png" alt="Paynet QR Code" 
-                                         class="img-fluid mb-3" style="max-width: 200px;">
+                                    <img src="/static/images/xazna_qr.png" alt="Xazna QR Code" class="img-fluid mb-3"
+                                        style="max-width: 200px; border-radius: 10px;">
+                                    <p class="text-success mb-3">
+                                        <strong>QR kodni skanerlang yoki tugmani bosing:</strong>
+                                    </p>
+                                    <a href="https://pay.xazna.uz/p2p/0ed3d14c-f661-4ff3-beda-ea2be0784abe"
+                                        target="_blank" class="btn btn-success btn-lg mb-3">
+                                        <i class="fas fa-external-link-alt me-2"></i>Xazna orqali to'lash
+                                    </a>
+                                    <p class="text-muted small">
+                                        <i class="fas fa-shield-alt me-1"></i>Xavfsiz P2P to'lov tizimi
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Paynet Payment -->
+                        <div class="tab-pane fade" id="paynet" role="tabpanel">
+                            <div class="card" style="background: #1a1a1a; border: 2px solid #00bcd4;">
+                                <div class="card-header bg-primary text-white text-center">
+                                    <h5><i class="fas fa-credit-card me-2"></i>Paynet to'lov</h5>
+                                </div>
+                                <div class="card-body text-center">
+                                    <img src="/static/images/paynet_qr.png" alt="Paynet QR Code" class="img-fluid mb-3"
+                                        style="max-width: 200px;">
                                     <p class="text-info mb-2">
                                         <strong>Karta raqami:</strong><br>
                                         <code>7777 0120 2883 9786</code>
@@ -482,45 +524,40 @@
                                     <p class="text-muted small">
                                         QR kodni skanerlang yoki karta raqamiga to'lov qiling
                                     </p>
-                                    <a href="https://play.google.com/store/search?q=paynet&c=apps&hl=ru" 
-                                       target="_blank" class="btn btn-success btn-sm">
-                                        <i class="fab fa-google-play me-1"></i>Paynet ilovasini yuklab olish
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="col-md-6">
-                            <div class="card" style="background: #1a1a1a; border: 2px solid #28a745;">
-                                <div class="card-header bg-success text-white">
-                                    <h5><i class="fab fa-telegram-plane me-2"></i>2-qadam: Chekni yuboring</h5>
-                                </div>
-                                <div class="card-body text-center">
-                                    <i class="fab fa-telegram-plane" style="font-size: 4rem; color: #00bcd4; margin: 20px 0;"></i>
-                                    <p class="text-muted mb-3">
-                                        To'lov qilgandan keyin chek rasmini admin Telegramiga yuboring:
-                                    </p>
-                                    <a href="https://t.me/akramjon0011" target="_blank" class="btn btn-primary btn-lg">
-                                        <i class="fab fa-telegram-plane me-2"></i>
-                                        @akramjon0011
-                                    </a>
-                                    <p class="text-warning small mt-3">
-                                        <i class="fas fa-clock me-1"></i>
-                                        Admin 24 soat ichida dostup beradi
-                                    </p>
                                 </div>
                             </div>
                         </div>
                     </div>
+
+                    <!-- Step 2: Send receipt -->
+                    <div class="card mt-3" style="background: #1a1a1a; border: 2px solid #ffc107;">
+                        <div class="card-header bg-warning text-dark text-center">
+                            <h5><i class="fab fa-telegram-plane me-2"></i>2-qadam: Chekni yuboring</h5>
+                        </div>
+                        <div class="card-body text-center">
+                            <p class="text-muted mb-3">
+                                To'lov qilgandan keyin chek rasmini admin Telegramiga yuboring:
+                            </p>
+                            <a href="https://t.me/akramjon0011" target="_blank" class="btn btn-primary btn-lg">
+                                <i class="fab fa-telegram-plane me-2"></i>@akramjon0011
+                            </a>
+                            <p class="text-warning small mt-3">
+                                <i class="fas fa-clock me-1"></i>Admin 24 soat ichida dostup beradi
+                            </p>
+                        </div>
+                    </div>
                 </div>
-                
+
                 <div class="contact-instructions mt-4">
                     <div class="alert alert-warning">
                         <h6><i class="fas fa-info-circle me-2"></i>Xabar yuborishda quyidagilarni ko'rsating:</h6>
                         <ul class="list-unstyled text-start mt-3">
-                            <li><i class="fas fa-check text-success me-2"></i>Tanlagan tarif nomi: <strong><span id="selectedPlanName"></span></strong></li>
-                            <li><i class="fas fa-check text-success me-2"></i>Sizning username: <strong>{{ current_user.username }}</strong></li>
-                            <li><i class="fas fa-check text-success me-2"></i>To'lov miqdori: <strong><span id="selectedAmountDisplay"></span> so'm</strong></li>
+                            <li><i class="fas fa-check text-success me-2"></i>Tanlagan tarif nomi: <strong><span
+                                        id="selectedPlanName"></span></strong></li>
+                            <li><i class="fas fa-check text-success me-2"></i>Sizning username: <strong>{{
+                                    current_user.username }}</strong></li>
+                            <li><i class="fas fa-check text-success me-2"></i>To'lov miqdori: <strong><span
+                                        id="selectedAmountDisplay"></span> so'm</strong></li>
                             <li><i class="fas fa-check text-success me-2"></i>Paynet to'lov cheki rasmi</li>
                         </ul>
                     </div>
@@ -542,29 +579,29 @@
 
 {% block scripts %}
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-    const contactModal = document.getElementById('contactModal');
-    
-    // Handle contact modal
-    contactModal.addEventListener('show.bs.modal', function(event) {
-        const button = event.relatedTarget;
-        const subscription = button.getAttribute('data-subscription');
-        const amount = button.getAttribute('data-amount');
-        
-        // Update plan information
-        const planNames = {
-            'starter': 'Starter',
-            'basic': 'Basic',
-            'premium': 'Premium'
-        };
-        
-        document.getElementById('selectedPlan').textContent = planNames[subscription] || subscription;
-        document.getElementById('selectedAmount').textContent = new Intl.NumberFormat('uz-UZ').format(amount);
-        
-        // Update new fields for payment instructions
-        document.getElementById('selectedPlanName').textContent = planNames[subscription] || subscription;
-        document.getElementById('selectedAmountDisplay').textContent = new Intl.NumberFormat('uz-UZ').format(amount);
+    document.addEventListener('DOMContentLoaded', function () {
+        const contactModal = document.getElementById('contactModal');
+
+        // Handle contact modal
+        contactModal.addEventListener('show.bs.modal', function (event) {
+            const button = event.relatedTarget;
+            const subscription = button.getAttribute('data-subscription');
+            const amount = button.getAttribute('data-amount');
+
+            // Update plan information
+            const planNames = {
+                'starter': 'Starter',
+                'basic': 'Basic',
+                'premium': 'Premium'
+            };
+
+            document.getElementById('selectedPlan').textContent = planNames[subscription] || subscription;
+            document.getElementById('selectedAmount').textContent = new Intl.NumberFormat('uz-UZ').format(amount);
+
+            // Update new fields for payment instructions
+            document.getElementById('selectedPlanName').textContent = planNames[subscription] || subscription;
+            document.getElementById('selectedAmountDisplay').textContent = new Intl.NumberFormat('uz-UZ').format(amount);
+        });
     });
-});
 </script>
 {% endblock %}

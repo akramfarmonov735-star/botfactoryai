@@ -1,15 +1,18 @@
 {% extends "base.html" %}
 {% block title %}Qo'llanma — Bosqichma-bosqich boshlash | BotFactory AI{% endblock %}
 {% block og_title %}Boshlash qo'llanmasi — BotFactory AI{% endblock %}
-{% block og_description %}Foydalanuvchilar uchun bosqichma-bosqich qo'llanma: ro'yxatdan o'tish, bot yaratish, Telegram/Instagram/WhatsApp sozlash, xabar yuborish, diagnostika.{% endblock %}
+{% block og_description %}Foydalanuvchilar uchun bosqichma-bosqich qo'llanma: ro'yxatdan o'tish, bot yaratish,
+Telegram/Instagram/WhatsApp sozlash, xabar yuborish, diagnostika.{% endblock %}
 {% block content %}
 <div class="container py-4">
   <div class="d-flex justify-content-between align-items-center mb-4">
     <div>
       <h1 class="mb-0"><i class="fas fa-graduation-cap text-primary"></i> Boshlash qo'llanmasi</h1>
-      <p class="text-muted mb-0">BotFactory AI’dan hech qanday qiyinchiliksiz foydalanish uchun bosqichma‑bosqich yo'riqnoma</p>
+      <p class="text-muted mb-0">BotFactory AI’dan hech qanday qiyinchiliksiz foydalanish uchun bosqichma‑bosqich
+        yo'riqnoma</p>
     </div>
-    <a class="btn btn-outline-secondary" href="{{ url_for('main.index') }}"><i class="fas fa-home me-1"></i> Bosh sahifa</a>
+    <a class="btn btn-outline-secondary" href="{{ url_for('main.index') }}"><i class="fas fa-home me-1"></i> Bosh
+      sahifa</a>
   </div>
 
   <div class="row g-4">
@@ -22,11 +25,13 @@
             <li>Elektron pochta/username va parol bilan <a href="{{ url_for('auth.login') }}">kiring</a>.</li>
           </ol>
           <figure class="mt-3 text-center">
-            <img class="img-fluid rounded shadow-sm" src="{{ url_for('static', filename='images/help/register.svg') }}" alt="Ro'yxatdan o'tish sahifasi namunasi">
+            <img class="img-fluid rounded shadow-sm" src="{{ url_for('static', filename='images/help/register.svg') }}"
+              alt="Ro'yxatdan o'tish sahifasi namunasi">
             <figcaption class="text-muted small mt-2">1-rasm. Ro'yxatdan o'tish oynasi (namuna)</figcaption>
           </figure>
           <figure class="mt-3 text-center">
-            <img class="img-fluid rounded shadow-sm" src="{{ url_for('static', filename='images/help/login.svg') }}" alt="Kirish sahifasi namunasi">
+            <img class="img-fluid rounded shadow-sm" src="{{ url_for('static', filename='images/help/login.svg') }}"
+              alt="Kirish sahifasi namunasi">
             <figcaption class="text-muted small mt-2">2-rasm. Kirish oynasi (namuna)</figcaption>
           </figure>
         </div>
@@ -37,12 +42,14 @@
           <h3 class="h5"><i class="fas fa-robot me-2"></i>2. Bot yaratish</h3>
           <ol class="ps-3">
             <li><a href="{{ url_for('main.dashboard') }}">Boshqaruv paneli</a>ga o'ting.</li>
-            <li>“Yangi bot yaratish” tugmasini bosing va platformani tanlang (Telegram / Instagram / WhatsApp).</li>
+            <li>"Yangi bot yaratish" tugmasini bosing (faqat Telegram qo'llab-quvvatlanadi).</li>
             <li>Kerakli maydonlarni to'ldiring (nomi, maqsad, tokenlar va h.k.).</li>
           </ol>
-          <p class="mb-0 text-muted">Telegram uchun token BotFather’dan olinadi. Instagram/WhatsApp uchun Meta Graph API talab qilinadi.</p>
+          <p class="mb-0 text-muted">Telegram uchun token BotFather’dan olinadi. Instagram/WhatsApp uchun Meta Graph API
+            talab qilinadi.</p>
           <figure class="mt-3 text-center">
-            <img class="img-fluid rounded shadow-sm" src="{{ url_for('static', filename='images/help/dashboard.svg') }}" alt="Boshqaruv paneli namunasi">
+            <img class="img-fluid rounded shadow-sm" src="{{ url_for('static', filename='images/help/dashboard.svg') }}"
+              alt="Boshqaruv paneli namunasi">
             <figcaption class="text-muted small mt-2">3-rasm. Boshqaruv paneli (namuna)</figcaption>
           </figure>
         </div>
@@ -56,7 +63,8 @@
             <li>Dashboard’da Telegram bot qatoriga tokenni kiriting va “Start” bosing.</li>
             <li>Botga <code>/start</code> yozing — javob keldi, demak u ishlayapti.</li>
           </ol>
-          <div class="alert alert-info mb-0"><strong>Eslatma:</strong> Biz polling + deduplikatsiya ishlatamiz. Markaziy <code>bot_manager</code> orqali start/stop boshqariladi.</div>
+          <div class="alert alert-info mb-0"><strong>Eslatma:</strong> Biz polling + deduplikatsiya ishlatamiz. Markaziy
+            <code>bot_manager</code> orqali start/stop boshqariladi.</div>
         </div>
       </div>
 
@@ -66,7 +74,8 @@
           <ul class="ps-3">
             <li>Business/Creator hisob + Facebook Page bog'langan bo'lishi kerak.</li>
             <li>Long‑lived Page Access Token andoza.</li>
-            <li>Webhook URL: Admin → Instagram bot → <code>/instagram/webhook/&lt;bot_id&gt;</code> ga subscribe qiling.</li>
+            <li>Webhook URL: Admin → Instagram bot → <code>/instagram/webhook/&lt;bot_id&gt;</code> ga subscribe qiling.
+            </li>
           </ul>
           <p class="mb-1">Muammo bo'lsa, diagnostikadan foydalaning:</p>
           <code>/admin/api/instagram/diagnostics/&lt;bot_id&gt;</code>
@@ -92,7 +101,8 @@
             <li>Mijozni tanlang yoki “Barchaga yuborish” ni belgilang.</li>
             <li>Matnni kiriting va “Yuborish” tugmasini bosing.</li>
           </ol>
-          <p class="mb-0 text-muted">Instagram’da 24 soat oynasi amal qiladi: foydalanuvchi yozganidan keyin 24 soat ichida javob yuborish mumkin.</p>
+          <p class="mb-0 text-muted">Instagram’da 24 soat oynasi amal qiladi: foydalanuvchi yozganidan keyin 24 soat
+            ichida javob yuborish mumkin.</p>
         </div>
       </div>
 
@@ -113,7 +123,8 @@
           <ul class="ps-3 mb-0">
             <li><strong>Instagram token:</strong> <code>/admin/api/instagram/diagnostics/&lt;bot_id&gt;</code></li>
             <li><strong>Telegram ikki marta javob:</strong> deduplikatsiya yoqilgan.</li>
-            <li><strong>Webhook verify:</strong> <code>hub.verify_token</code> va <code>hub.challenge</code> ni tekshiring.</li>
+            <li><strong>Webhook verify:</strong> <code>hub.verify_token</code> va <code>hub.challenge</code> ni
+              tekshiring.</li>
           </ul>
         </div>
       </div>
@@ -145,10 +156,14 @@
         <div class="card-body">
           <h5 class="card-title">Tezkor linklar</h5>
           <div class="list-group list-group-flush">
-            <a class="list-group-item list-group-item-action" href="{{ url_for('main.blog_index') }}"><i class="fas fa-newspaper me-1"></i> Blog</a>
-            <a class="list-group-item list-group-item-action" href="/sitemap.xml"><i class="fas fa-sitemap me-1"></i> Sitemap</a>
-            <a class="list-group-item list-group-item-action" href="/blog/rss.xml"><i class="fas fa-rss me-1"></i> RSS</a>
-            <a class="list-group-item list-group-item-action" href="{{ url_for('main.dashboard') }}"><i class="fas fa-tachometer-alt me-1"></i> Boshqaruv paneli</a>
+            <a class="list-group-item list-group-item-action" href="{{ url_for('main.blog_index') }}"><i
+                class="fas fa-newspaper me-1"></i> Blog</a>
+            <a class="list-group-item list-group-item-action" href="/sitemap.xml"><i class="fas fa-sitemap me-1"></i>
+              Sitemap</a>
+            <a class="list-group-item list-group-item-action" href="/blog/rss.xml"><i class="fas fa-rss me-1"></i>
+              RSS</a>
+            <a class="list-group-item list-group-item-action" href="{{ url_for('main.dashboard') }}"><i
+                class="fas fa-tachometer-alt me-1"></i> Boshqaruv paneli</a>
           </div>
         </div>
       </div>

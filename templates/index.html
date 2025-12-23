@@ -9,14 +9,15 @@
         <div class="row align-items-center">
             <div class="col-lg-6">
                 <div class="mb-4">
-                    <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Chatbot Factory AI" style="width: 80px; height: 80px; border-radius: 50%; box-shadow: 0 4px 8px rgba(0,0,0,0.1); margin-right: 15px;">
+                    <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Chatbot Factory AI"
+                        style="width: 80px; height: 80px; border-radius: 50%; box-shadow: 0 4px 8px rgba(0,0,0,0.1); margin-right: 15px;">
                 </div>
                 <h1 class="display-4 fw-bold mb-4">
                     Chatbot Factory AI
                 </h1>
                 <p class="lead mb-4">
-                    O'zbek tili uchun professional AI chatbot platformasi. 
-                    Telegram, Instagram va WhatsApp uchun aqlli botlar yarating! 🚀
+                    O'zbek tili uchun professional AI chatbot platformasi.
+                    Telegram uchun aqlli botlar yarating! 🚀
                 </p>
                 {% if not current_user.is_authenticated %}
                 <div class="d-flex gap-3">
@@ -47,7 +48,7 @@
             <i class="fas fa-star me-2"></i>Nima uchun Chatbot Factory AI?
         </h2>
     </div>
-    
+
     <div class="col-md-4 mb-4">
         <div class="card h-100 feature-card">
             <div class="card-body text-center">
@@ -56,28 +57,28 @@
                 </div>
                 <h5 class="card-title">Aqlli AI</h5>
                 <p class="card-text">
-                    Google Gemini AI yordamida o'zbek, rus va ingliz tillarida 
+                    Google Gemini AI yordamida o'zbek, rus va ingliz tillarida
                     professional javoblar beruvchi botlar yarating.
                 </p>
             </div>
         </div>
     </div>
-    
+
     <div class="col-md-4 mb-4">
         <div class="card h-100 feature-card">
             <div class="card-body text-center">
                 <div class="feature-icon mb-3">
                     <i class="fas fa-mobile-alt text-success"></i>
                 </div>
-                <h5 class="card-title">Ko'p platforma</h5>
+                <h5 class="card-title">Telegram Bot</h5>
                 <p class="card-text">
-                    Telegram, Instagram va WhatsApp uchun botlar yarating. 
-                    Bir joydan barcha platformalarni boshqaring.
+                    Telegram uchun professional AI botlar yarating.
+                    Oson boshqaruv va kuchli funksiyalar.
                 </p>
             </div>
         </div>
     </div>
-    
+
     <div class="col-md-4 mb-4">
         <div class="card h-100 feature-card">
             <div class="card-body text-center">
@@ -86,7 +87,7 @@
                 </div>
                 <h5 class="card-title">Bilim bazasi</h5>
                 <p class="card-text">
-                    O'z ma'lumotlaringizni yuklang va botingiz sizning 
+                    O'z ma'lumotlaringizni yuklang va botingiz sizning
                     kompaniya haqida batafsil ma'lumot bersin.
                 </p>
             </div>
@@ -109,7 +110,8 @@
                     <button id="open-chatbot" class="btn btn-primary btn-lg">
                         <i class="fas fa-robot me-2"></i>Chatbot bilan suhbat
                     </button>
-                    <a href="{{ config.get('SUPPORT_TELEGRAM', 'https://t.me/akramjon0011') }}" target="_blank" class="btn btn-info btn-lg text-white">
+                    <a href="{{ config.get('SUPPORT_TELEGRAM', 'https://t.me/akramjon0011') }}" target="_blank"
+                        class="btn btn-info btn-lg text-white">
                         <i class="fab fa-telegram me-2"></i>Telegramda yozish
                     </a>
                     <a href="tel:{{ config.get('SUPPORT_PHONE', '+998900000000') }}" class="btn btn-success btn-lg">
@@ -128,7 +130,7 @@
             <i class="fas fa-crown me-2"></i>Tariflar
         </h2>
     </div>
-    
+
     <div class="col-lg-3 col-md-6 mb-4">
         <div class="card pricing-card h-100">
             <div class="card-header text-center bg-secondary text-white">
@@ -159,7 +161,7 @@
             </div>
         </div>
     </div>
-    
+
     <div class="col-lg-3 col-md-6 mb-4">
         <div class="card pricing-card h-100 border-info">
             <div class="card-header text-center bg-info text-white">
@@ -191,7 +193,7 @@
             </div>
         </div>
     </div>
-    
+
     <div class="col-lg-3 col-md-6 mb-4">
         <div class="card pricing-card h-100 border-primary">
             <div class="card-header text-center bg-primary text-white">
@@ -206,7 +208,7 @@
                 </h2>
                 <ul class="list-unstyled mt-3 mb-4">
                     <li><i class="fas fa-check text-success me-2"></i>1 ta bot</li>
-                    <li><i class="fas fa-check text-success me-2"></i>Barcha platformalar</li>
+                    <li><i class="fas fa-check text-success me-2"></i>Telegram Bot</li>
                     <li><i class="fas fa-check text-success me-2"></i>3 ta til (uz/ru/en)</li>
                     <li><i class="fas fa-check text-success me-2"></i>Bilim bazasi</li>
                     <li><i class="fas fa-check text-success me-2"></i>Texnik yordam</li>
@@ -223,7 +225,7 @@
             </div>
         </div>
     </div>
-    
+
     <div class="col-lg-3 col-md-6 mb-4">
         <div class="card pricing-card h-100 border-warning">
             <div class="card-header text-center bg-warning text-dark">
@@ -238,7 +240,7 @@
                 </h2>
                 <ul class="list-unstyled mt-3 mb-4">
                     <li><i class="fas fa-check text-success me-2"></i>5 ta bot</li>
-                    <li><i class="fas fa-check text-success me-2"></i>Barcha platformalar</li>
+                    <li><i class="fas fa-check text-success me-2"></i>Telegram Bot</li>
                     <li><i class="fas fa-check text-success me-2"></i>3 ta til (uz/ru/en)</li>
                     <li><i class="fas fa-check text-success me-2"></i>Bilim bazasi</li>
                     <li><i class="fas fa-check text-success me-2"></i>Prioritet yordam</li>
@@ -265,46 +267,46 @@
             <i class="fas fa-cogs me-2"></i>Qanday ishlaydi?
         </h2>
     </div>
-    
+
     <div class="col-md-3 mb-4">
         <div class="text-center">
             <div class="step-number mb-3">1</div>
             <h5>Ro'yxatdan o'ting</h5>
             <p class="text-body">
-                14 kunlik bepul sinov davri bilan 
+                14 kunlik bepul sinov davri bilan
                 tizimda ro'yxatdan o'ting
             </p>
         </div>
     </div>
-    
+
     <div class="col-md-3 mb-4">
         <div class="text-center">
             <div class="step-number mb-3">2</div>
             <h5>Bot yarating</h5>
             <p class="text-body">
-                Oddiy interfeys orqali o'z 
+                Oddiy interfeys orqali o'z
                 chatbotingizni sozlang
             </p>
         </div>
     </div>
-    
+
     <div class="col-md-3 mb-4">
         <div class="text-center">
             <div class="step-number mb-3">3</div>
             <h5>Ma'lumot yuklang</h5>
             <p class="text-body">
-                Kompaniya ma'lumotlarini yuklang 
+                Kompaniya ma'lumotlarini yuklang
                 va botni o'qiting
             </p>
         </div>
     </div>
-    
+
     <div class="col-md-3 mb-4">
         <div class="text-center">
             <div class="step-number mb-3">4</div>
             <h5>Ishga tushiring</h5>
             <p class="text-body">
-                Botingiz tayyor! Mijozlar bilan 
+                Botingiz tayyor! Mijozlar bilan
                 24/7 muloqot qiling
             </p>
         </div>
