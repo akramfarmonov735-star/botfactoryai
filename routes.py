@@ -71,6 +71,33 @@ def healthz():
     except Exception:
         return jsonify({"status": "ok", "db": "degraded"}), 200
 
+@main_bp.route('/enable-miniapp')
+def enable_miniapp():
+    """Enable Mini App for all bots - use this endpoint after deployment"""
+    try:
+        bots = Bot.query.all()
+        enabled_count = 0
+        for bot in bots:
+            if not getattr(bot, 'miniapp_enabled', True):
+                bot.miniapp_enabled = True
+                enabled_count += 1
+            elif bot.miniapp_enabled is None:
+                bot.miniapp_enabled = True
+                enabled_count += 1
+        
+        # Set all to True just in case
+        for bot in bots:
+            bot.miniapp_enabled = True
+        
+        db.session.commit()
+        return jsonify({
+            "status": "ok",
+            "message": f"Mini App enabled for {len(bots)} bots",
+            "bots_enabled": len(bots)
+        }), 200
+    except Exception as e:
+        return jsonify({"status": "error", "error": str(e)}), 500
+
 @main_bp.route('/dashboard')
 @login_required
 def dashboard():
