@@ -238,6 +238,49 @@ with app.app_context():
         db.create_all()
         logger.info("Database schema up to date")
         
+        # Auto-migrate Mini App columns if missing (for existing databases)
+        try:
+            from sqlalchemy import text
+            with db.engine.connect() as conn:
+                # Check if business_type column exists
+                if 'postgresql' in str(db.engine.url):
+                    # PostgreSQL migration
+                    columns_to_add = [
+                        ("business_type", "VARCHAR(20) DEFAULT 'product'"),
+                        ("business_description", "VARCHAR(500)"),
+                        ("business_logo", "VARCHAR(500)"),
+                        ("working_hours", "VARCHAR(100)"),
+                        ("miniapp_enabled", "BOOLEAN DEFAULT true"),
+                        ("description", "VARCHAR(500)"),
+                    ]
+                    for col_name, col_def in columns_to_add:
+                        try:
+                            conn.execute(text(f"ALTER TABLE bot ADD COLUMN IF NOT EXISTS {col_name} {col_def}"))
+                        except Exception:
+                            pass
+                    
+                    # Create mini_app_order table if not exists
+                    conn.execute(text("""
+                        CREATE TABLE IF NOT EXISTS mini_app_order (
+                            id SERIAL PRIMARY KEY,
+                            bot_id INTEGER NOT NULL REFERENCES bot(id),
+                            customer_name VARCHAR(200) NOT NULL,
+                            customer_phone VARCHAR(50) NOT NULL,
+                            customer_address VARCHAR(500),
+                            note TEXT,
+                            items TEXT NOT NULL,
+                            total_amount FLOAT DEFAULT 0,
+                            telegram_user_id VARCHAR(50),
+                            status VARCHAR(20) DEFAULT 'pending',
+                            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                            updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+                        )
+                    """))
+                    conn.commit()
+                    logger.info("Mini App database migration completed")
+        except Exception as migration_error:
+            logger.warning(f"Mini App migration skipped: {migration_error}")
+        
         # Create admin user only if environment variables are provided (for initial setup)
         admin_email = os.environ.get("ADMIN_EMAIL")
         admin_password = os.environ.get("ADMIN_PASSWORD")
