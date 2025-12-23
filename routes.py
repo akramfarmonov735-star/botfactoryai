@@ -901,18 +901,35 @@ def change_user_subscription():
     
     user = User.query.get_or_404(user_id)
     
-    # Don't allow changing admin subscription or setting subscription to free
-    if user.subscription_type == 'admin' or subscription_type == 'free':
-        flash('Xatolik: Admin obunasini yoki bepul ta\'rifni o\'zgartirib bo\'lmaydi!', 'error')
+    # Don't allow changing admin subscription
+    if user.subscription_type == 'admin':
+        flash('Xatolik: Admin obunasini o\'zgartirib bo\'lmaydi!', 'error')
         return redirect(url_for('main.admin'))
     
-    # Set new subscription
-    user.subscription_type = subscription_type
-    
-    # Calculate end date based on duration
-    if subscription_type in ['basic', 'premium']:
+    # Handle trial_14 as a special case
+    if subscription_type == 'trial_14':
+        user.subscription_type = 'basic'  # Give basic features during trial
+        user.subscription_end_date = datetime.utcnow() + timedelta(days=14)
+        subscription_name = '14 kun test'
+        duration_text = '14 kun'
+    elif subscription_type == 'free':
+        user.subscription_type = 'free'
+        user.subscription_end_date = None
+        subscription_name = 'Bepul'
+        duration_text = 'cheksiz'
+    else:
+        # Set new subscription
+        user.subscription_type = subscription_type
+        # Calculate end date based on duration
         days = int(subscription_duration)
         user.subscription_end_date = datetime.utcnow() + timedelta(days=days)
+        subscription_names = {
+            'starter': 'Starter',
+            'basic': 'Basic',
+            'premium': 'Premium'
+        }
+        subscription_name = subscription_names.get(subscription_type, subscription_type)
+        duration_text = f'{subscription_duration} kun'
     
     try:
         db.session.commit()
@@ -929,12 +946,7 @@ def change_user_subscription():
         db.session.add(payment)
         db.session.commit()
         
-        subscription_names = {
-            'basic': 'Basic',
-            'premium': 'Premium'
-        }
-        
-        flash(f'{user.username} foydalanuvchisining obunasi {subscription_names.get(subscription_type, subscription_type)} ga o\'zgartirildi ({subscription_duration} kun)', 'success')
+        flash(f'{user.username} foydalanuvchisining obunasi {subscription_name} ga o\'zgartirildi ({duration_text})', 'success')
     except Exception as e:
         db.session.rollback()
         flash('Obunani o\'zgartirishda xatolik yuz berdi!', 'error')
