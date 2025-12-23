@@ -22,10 +22,11 @@ class Update:
 
 class InlineKeyboardButton:
     """Lightweight InlineKeyboardButton replacement"""
-    def __init__(self, text, callback_data=None, url=None):
+    def __init__(self, text, callback_data=None, url=None, web_app=None):
         self.text = text
         self.callback_data = callback_data
         self.url = url
+        self.web_app = web_app  # WebApp support for Mini Apps
     
     def to_dict(self):
         result = {"text": self.text}
@@ -33,6 +34,8 @@ class InlineKeyboardButton:
             result["callback_data"] = self.callback_data
         if self.url:
             result["url"] = self.url
+        if self.web_app:
+            result["web_app"] = self.web_app
         return result
 
 class InlineKeyboardMarkup:
@@ -202,6 +205,7 @@ class TelegramHTTPBot:
                 self.id = data['id']
                 self.username = data.get('username', '')
                 self.first_name = data.get('first_name', '')
+                self.last_name = data.get('last_name', '')
                 
         class SimpleChat:
             def __init__(self, data):
