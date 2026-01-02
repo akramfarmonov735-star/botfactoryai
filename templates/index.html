@@ -123,6 +123,76 @@
     </div>
 </div>
 
+<!-- Portfolio Section -->
+<div class="row mb-5">
+    <div class="col-12">
+        <h2 class="text-center mb-5">
+            <i class="fas fa-briefcase me-2"></i>Bizning loyihalarimiz
+        </h2>
+    </div>
+
+    <div class="col-md-4 mb-4">
+        <div class="card h-100 shadow-sm hover-lift">
+            <div class="card-body text-center">
+                <div class="mb-3">
+                    <i class="fas fa-store text-primary" style="font-size: 3rem;"></i>
+                </div>
+                <h5 class="card-title">TrendoAI.uz</h5>
+                <p class="card-text text-muted">
+                    O'zbekiston uchun eng zamonaviy AI e-commerce platformasi.
+                    Kiyim-kechak va aksessuarlar onlayn do'koni.
+                </p>
+                <div class="d-flex justify-content-center gap-2">
+                    <a href="https://trendoai.uz" target="_blank" class="btn btn-primary">
+                        <i class="fas fa-external-link-alt me-1"></i>Ko'rish
+                    </a>
+                    <a href="https://t.me/TrendoAI_Bot" target="_blank" class="btn btn-outline-info">
+                        <i class="fab fa-telegram me-1"></i>Bot
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4 mb-4">
+        <div class="card h-100 shadow-sm hover-lift">
+            <div class="card-body text-center">
+                <div class="mb-3">
+                    <i class="fas fa-robot text-success" style="font-size: 3rem;"></i>
+                </div>
+                <h5 class="card-title">BotFactory AI</h5>
+                <p class="card-text text-muted">
+                    Telegram, Instagram va WhatsApp uchun AI chatbotlar yaratish platformasi.
+                    O'zbek tilida to'liq qo'llab-quvvatlash.
+                </p>
+                <div class="d-flex justify-content-center gap-2">
+                    <a href="{{ url_for('main.dashboard') }}" class="btn btn-success">
+                        <i class="fas fa-tachometer-alt me-1"></i>Dashboard
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4 mb-4">
+        <div class="card h-100 shadow-sm hover-lift border-dashed">
+            <div class="card-body text-center d-flex flex-column justify-content-center">
+                <div class="mb-3">
+                    <i class="fas fa-plus-circle text-muted" style="font-size: 3rem;"></i>
+                </div>
+                <h5 class="card-title text-muted">Sizning loyihangiz?</h5>
+                <p class="card-text text-muted">
+                    Biz bilan bog'laning va o'z AI chatbotingizni yarating!
+                </p>
+                <a href="{{ config.get('SUPPORT_TELEGRAM', 'https://t.me/akramjon0011') }}" target="_blank"
+                    class="btn btn-outline-primary">
+                    <i class="fas fa-comments me-1"></i>Bog'lanish
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
 <!-- Pricing Section -->
 <div class="row mb-5">
     <div class="col-12">
